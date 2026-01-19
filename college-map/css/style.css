@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+#map {
+  height: 90vh;
+}
+
+input {
+  width: 98%;
+  padding: 8px;
+  margin: 5px;
+}
+/* Leaflet popup image styling */
+.leaflet-popup-content img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 5px;
+}
