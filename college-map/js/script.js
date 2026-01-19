@@ -8,8 +8,8 @@ L.tileLayer(
 var buildings = [
   {
     name: "อาคาร 1",
-    lat: 13.539763,
-    lng: 100.619968,
+    lat: 13.539755,
+    lng: 100.620095,
     image: "images/building1.jpg",
     detail: "อาคารอำนวยการ"
   },
@@ -32,14 +32,14 @@ var buildings = [
   lat: 13.539026,
   lng: 100.6198,
   image: "images/building2.jpg",
-  detail: "อาคารหอประชุม"
+  detail: "โถงประชุม"
 },
 {
-  name: "อาคาร 4",
-  lat: 13.539823,
-  lng: 100.620643, 
-  image: "images/building2.jpg"
-  ,detail: "อาคารวิชาคอมพิวเตอร์"
+  name: "โรงอาหาร",
+  lat: 13.538629,
+  lng: 100.619906, 
+  image: "images/building2.jpg",
+  detail: "โรงอาหาร1"
 },
 ];
 
