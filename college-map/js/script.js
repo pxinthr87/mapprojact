@@ -20,6 +20,27 @@ var buildings = [
   image: "images/building2.jpg",
   detail: "อาคารคณะการตลาด"
 },
+{
+  name: "อาคาร 3",
+  lat: 13.539412,
+  lng: 100.620082,
+  image: "images/building2.jpg",
+  detail: "อาคารวิชาคณิตศาสตร์/วิทยาศาสตร์"
+},
+{
+  name: "สหกรณ์",
+  lat: 13.539026,
+  lng: 100.6198,
+  image: "images/building2.jpg",
+  detail: "อาคารหอประชุม"
+},
+{
+  name: "อาคาร 4",
+  lat: 13.539823,
+  lng: 100.620643, 
+  image: "images/building2.jpg"
+  ,detail: "อาคารวิชาคอมพิวเตอร์"
+},
 ];
 
 buildings.forEach(b => {
