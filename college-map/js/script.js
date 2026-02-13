@@ -184,24 +184,22 @@ var buildings = [
 ];
 
 buildings.forEach(b => {
-  let imagesHtml = b.images
-    .map(img => `<img src="${img}" style="width:200px;margin-bottom:5px;"><br>`)
-    .join('');
-
+  let imagesHtml = '';
+  if (b.images && Array.isArray(b.images)) {
+    imagesHtml = b.images.map(img => `<img src="${img}" style="width:200px;margin-bottom:5px;"><br>`).join('');
+  } else if (b.image) {
+    imagesHtml = `<img src="${b.image}" style="width:200px"><br>`;
+  }
   L.marker([b.lat, b.lng])
     .addTo(map)
     .bindPopup(`
       <b>${b.name}</b><br>
       ${imagesHtml}
-      <small>${b.detail}</small><br><br>
-      <button onclick="navigateTo(${b.lat},${b.lng})">
+      <small>${b.detail}</small><br>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=${b.lat},${b.lng}" target="_blank" style="color:blue;text-decoration:underline;">
         🧭 นำทาง
-      </button>
-    `)
-    .on('click', () => {
-      map.setView([b.lat, b.lng], 19);
-    });
-
+      </a>
+    `);
 });
 const thumbnail = document.getElementById("thumbnail-container");
 
