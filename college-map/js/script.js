@@ -107,14 +107,14 @@ var buildings = [
   {
     name: "โรงอาหาร 2",
     lat: 13.537643,
-    lng: 100.617702,
+    lng: 100.617555,
     images: ["images/building19.png",],
     detail: "โรงอาหาร 2"
   },
   {
     name: "แผนกวิชาช่างอากาศยาน",
-    lat: 13.537666,
-    lng: 100.617708,
+    lat: 13.537555,
+    lng: 100.617777,
     images: ["images/building20.png",],
     detail: "แผนกวิชาช่างอากาศยาน"
   },
