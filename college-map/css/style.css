@@ -3,23 +3,32 @@ body {
   font-family: sans-serif;
 }
 
-#map {
-  height: 90vh;
+/* แบนเนอร์ */
+#banner-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
 }
 
-input {
-  width: 98%;
-  padding: 8px;
-  margin: 5px;
+#banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-/* Leaflet popup image styling */
+
+/* แผนที่ */
+#map {
+  height: 80vh;
+}
+
+/* popup image */
 .leaflet-popup-content img {
   width: 100%;
   border-radius: 8px;
   margin-top: 5px;
 }
 
-/* Thumbnail image at bottom left */
+/* ===== รูปเล็ก ===== */
 #thumbnail-container {
   position: fixed;
   left: 20px;
@@ -33,10 +42,26 @@ input {
   align-items: center;
   justify-content: center;
   z-index: 1001;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
+
 #thumbnail-image {
   width: 90px;
   height: 90px;
   object-fit: cover;
   border-radius: 8px;
+}
+
+/* ตอนขยาย */
+#thumbnail-container.expanded {
+  width: 400px;
+  height: 300px;
+  left: 30px;
+  bottom: 30px;
+}
+
+#thumbnail-container.expanded #thumbnail-image {
+  width: 100%;
+  height: 100%;
 }
