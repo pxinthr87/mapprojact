@@ -1,3 +1,4 @@
+
 var map = L.map('map').setView([13.539973, 100.620207], 17);
 
 L.tileLayer(
@@ -183,6 +184,8 @@ var buildings = [
   },
 ];
 
+// เก็บ marker ไว้เพื่อใช้ค้นหา
+var buildingMarkers = [];
 buildings.forEach(b => {
   let imagesHtml = '';
   if (b.images && Array.isArray(b.images)) {
@@ -190,7 +193,7 @@ buildings.forEach(b => {
   } else if (b.image) {
     imagesHtml = `<img src="${b.image}" style="width:200px"><br>`;
   }
-  L.marker([b.lat, b.lng])
+  var marker = L.marker([b.lat, b.lng])
     .addTo(map)
     .bindPopup(`
       <b>${b.name}</b><br>
@@ -200,5 +203,38 @@ buildings.forEach(b => {
         🧭 นำทาง
       </a>
     `);
+  buildingMarkers.push({ marker, detail: b.detail });
+});
+
+// ฟังก์ชันค้นหา detail
+function searchDetail() {
+  var input = document.getElementById('search-input');
+  var keyword = input.value.trim();
+  if (!keyword) return;
+  var found = false;
+  for (var i = 0; i < buildingMarkers.length; i++) {
+    if (buildingMarkers[i].detail && buildingMarkers[i].detail.indexOf(keyword) !== -1) {
+      var m = buildingMarkers[i].marker;
+      map.setView(m.getLatLng(), 19);
+      m.openPopup();
+      found = true;
+      break;
+    }
+  }
+  if (!found) {
+    alert('ไม่พบข้อมูลที่ค้นหา');
+  }
+}
+
+// Event สำหรับปุ่มค้นหา
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('search-btn');
+  var input = document.getElementById('search-input');
+  if (btn && input) {
+    btn.addEventListener('click', searchDetail);
+    input.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') searchDetail();
+    });
+  }
 });
 
