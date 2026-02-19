@@ -201,8 +201,4 @@ buildings.forEach(b => {
       </a>
     `);
 });
-const thumbnail = document.getElementById("thumbnail-container");
 
-thumbnail.addEventListener("click", () => {
-  thumbnail.classList.toggle("expanded");
-});
