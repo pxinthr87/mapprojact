@@ -8,25 +8,25 @@ L.tileLayer(
 
 var buildings = [
   {
-    name: "อาคาร 1",
+    name: "อาคาร1",
     lat: 13.539755,
     lng: 100.620095,
     images: ["images/building1.jpg","images/building4.png"],
-    detail: "อาคารอำนวยการ"
+    detail: "ห้องอำนวยการ"
   },
   {
-    name: "อาคาร 2",
+    name: "อาคาร2",
     lat: 13.540015,
     lng: 100.619764,
     images: ["images/building2.jpg", "images/building3.png"],
-    detail: "อาคารคณะการตลาด/ห้องงานทะเบียน"
+    detail: "คณะการตลาด/ห้องงานทะเบียน"
   },
   {
-    name: "อาคาร 3",
+    name: "อาคาร3",
     lat: 13.539242,
     lng: 100.619722,
     images: ["images/building5.png"],
-    detail: "อาคารภาษาไทย/สังคม/ห้องวัดผล"
+    detail: "คณะภาษาไทย/คณะสังคม/คณะห้องวัดผล"
   },
   {
     name: "ห้องสมุด",
@@ -43,53 +43,53 @@ var buildings = [
     detail: "โรงอาหาร1"
   },
    {
-    name: "อาคาร 9",
+    name: "อาคาร9",
     lat: 13.539474,
     lng: 100.619232, 
     images: ["images/building8.png"],
-    detail: "อาคารคณะโลจิสติกส์/ห้องประชุมใหญ่"
+    detail: "คณะโลจิสติกส์/ห้องประชุมใหญ่"
   },
   {
     name: "อาคารศิลปกรรม",
     lat: 13.539123,
     lng: 100.619250, 
     images: ["images/building9.png"],
-    detail: "อาคารคณะศิลปกรรม/คอมพิวเตอร์กราฟฟิค"
+    detail: "คณะศิลปกรรม/คอมพิวเตอร์กราฟฟิค"
   },
   {
     name: "แผนกช่างยนต์",
     lat: 13.53875,
     lng: 100.618725,
     images: ["images/building10.png",],
-    detail: "อาคารคณะช่างยนต์"
+    detail: "คณะช่างยนต์"
   },
   {
     name: "แผนกช่างเชื่อมโลหะ",
     lat: 13.538613,
     lng: 100.61928,
     images: ["images/building11.png",],
-    detail: "อาคารคณะช่างเชื่อมโลหะ"
+    detail: "คณะช่างเชื่อมโลหะ"
   },
    {
     name: "แผนกช่างก่อสร้าง",
     lat: 13.538787,
     lng: 100.61833,
     images: ["images/building12.png",],
-    detail: "อาคารคณะช่างก่อสร้าง"
+    detail: "คณะช่างก่อสร้าง"
   },
   {
     name: "แผนกแฟชั่นและสิ่งทอ/อุตสาหกรรมการท่องเที่ยว/การโรงแรม",
     lat: 13.538315,
     lng: 100.619144,
     images: ["images/building13.png","images/building14.png","images/building15.png",],
-    detail: "อาคารคณะแฟชั่นและสิ่งทอ/อุตสาหกรรมการท่องเที่ยว/การโรงแรม"
+    detail: "คณะแฟชั่นและสิ่งทอ/คณะอุตสาหกรรมการท่องเที่ยว/คณะการโรงแรม"
   },
   {
     name: "แผนกอาหารและโภชนาการ",
     lat: 13.537973,
     lng: 100.619485,
     images: ["images/building16.png",],
-    detail: "อาคารคณะอาหารและโภชนาการ"
+    detail: "คณะอาหารและโภชนาการ"
   },
    {
     name: "งานสวัสดิการนักเรียนนักศึกษา",
@@ -106,11 +106,11 @@ var buildings = [
     detail: "งานพัสดุ"
   },
   {
-    name: "โรงอาหาร 2",
+    name: "โรงอาหาร2",
     lat: 13.537643,
     lng: 100.617555,
     images: ["images/building19.png",],
-    detail: "โรงอาหาร 2"
+    detail: "โรงอาหาร2"
   },
   {
     name: "แผนกวิชาช่างอากาศยาน",
@@ -203,6 +203,8 @@ buildings.forEach(b => {
         🧭 นำทาง
       </a>
     `);
+  // เพิ่ม tooltip (title) ให้ marker
+  marker.bindTooltip(`<b>${b.name}</b><br><small>${b.detail}</small>`, {direction: 'top', sticky: true, offset: [0, -10]});
   buildingMarkers.push({ marker, detail: b.detail });
 });
 
@@ -212,9 +214,21 @@ function searchDetail() {
   var keyword = input.value.trim();
   if (!keyword) return;
   var found = false;
-  for (var i = 0; i < buildingMarkers.length; i++) {
-    if (buildingMarkers[i].detail && buildingMarkers[i].detail.indexOf(keyword) !== -1) {
-      var m = buildingMarkers[i].marker;
+  for (var i = 0; i < buildings.length; i++) {
+    var b = buildings[i];
+    var m = buildingMarkers[i].marker;
+    // split name/detail by '/'
+    var nameParts = b.name ? b.name.split('/') : [];
+    var detailParts = b.detail ? b.detail.split('/') : [];
+    var match = false;
+    // check each part
+    nameParts.forEach(function(part) {
+      if (part.trim().indexOf(keyword) !== -1) match = true;
+    });
+    detailParts.forEach(function(part) {
+      if (part.trim().indexOf(keyword) !== -1) match = true;
+    });
+    if (match) {
       map.setView(m.getLatLng(), 19);
       m.openPopup();
       found = true;
@@ -226,14 +240,74 @@ function searchDetail() {
   }
 }
 
-// Event สำหรับปุ่มค้นหา
+// Event สำหรับปุ่มค้นหา + ระบบแนะนำคำค้นหา
 document.addEventListener('DOMContentLoaded', function() {
   var btn = document.getElementById('search-btn');
   var input = document.getElementById('search-input');
+  var suggestionBox = document.getElementById('search-suggestions');
+
+  // สร้างรายการคำค้นหาทั้งหมดจาก name และ detail (แยก /)
+  var allKeywords = [];
+  buildings.forEach(function(b) {
+    if (b.name) {
+      b.name.split('/').forEach(function(part) {
+        var kw = part.trim();
+        if (kw && allKeywords.indexOf(kw) === -1) allKeywords.push(kw);
+      });
+    }
+    if (b.detail) {
+      b.detail.split('/').forEach(function(part) {
+        var kw = part.trim();
+        if (kw && allKeywords.indexOf(kw) === -1) allKeywords.push(kw);
+      });
+    }
+  });
+
+  function showSuggestions(value) {
+    var val = value.trim();
+    if (!val) {
+      suggestionBox.style.display = 'none';
+      suggestionBox.innerHTML = '';
+      return;
+    }
+    var matches = allKeywords.filter(function(kw) {
+      return kw.indexOf(val) !== -1;
+    });
+    if (matches.length === 0) {
+      suggestionBox.style.display = 'none';
+      suggestionBox.innerHTML = '';
+      return;
+    }
+    suggestionBox.innerHTML = matches.map(function(kw) {
+      return '<li style="padding:8px 12px;cursor:pointer;" tabindex="0">' + kw + '</li>';
+    }).join('');
+    suggestionBox.style.display = 'block';
+    // คลิกเลือก suggestion
+    Array.from(suggestionBox.children).forEach(function(li) {
+      li.addEventListener('mousedown', function(e) {
+        input.value = li.textContent;
+        suggestionBox.style.display = 'none';
+        searchDetail();
+      });
+    });
+  }
+
   if (btn && input) {
     btn.addEventListener('click', searchDetail);
     input.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') searchDetail();
+      if (e.key === 'Enter') {
+        suggestionBox.style.display = 'none';
+        searchDetail();
+      }
+    });
+    input.addEventListener('input', function(e) {
+      showSuggestions(input.value);
+    });
+    input.addEventListener('focus', function() {
+      showSuggestions(input.value);
+    });
+    input.addEventListener('blur', function() {
+      setTimeout(function() { suggestionBox.style.display = 'none'; }, 150);
     });
   }
 });
