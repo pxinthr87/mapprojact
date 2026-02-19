@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- เพิ่ม Leaflet Routing Machine -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
   <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 </head>
@@ -20,13 +19,24 @@
 </div>
 <div id="map"></div>
 
-<!-- Thumbnail image at bottom left -->
 <div id="thumbnail-container">
   <img id="thumbnail-image" src="images/map.jpg" alt="รูปเล็ก" />
 </div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="js/script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var thumb = document.getElementById('thumbnail-container');
+  var img = document.getElementById('thumbnail-image');
+  if (thumb && img) {
+    thumb.style.cursor = 'pointer';
+    thumb.addEventListener('click', function() {
+      window.open(img.src, '_blank', 'width=800,height=600');
+    });
+  }
+});
+</script>
 
 
 
