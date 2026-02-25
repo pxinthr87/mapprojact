@@ -208,6 +208,41 @@ buildings.forEach(b => {
   buildingMarkers.push({ marker, detail: b.detail });
 });
 
+  // สร้าง Sidebar รายชื่ออาคาร/สถานที่
+  document.addEventListener('DOMContentLoaded', function() {
+    var sidebarList = document.getElementById('sidebar-list');
+    var sidebar = document.getElementById('sidebar');
+    var toggleBtn = document.getElementById('sidebar-toggle');
+    if (sidebarList) {
+      buildings.forEach(function(b, idx) {
+        var li = document.createElement('li');
+        li.textContent = b.name;
+        li.title = b.detail;
+        li.tabIndex = 0;
+        li.addEventListener('click', function() {
+          map.setView([b.lat, b.lng], 19);
+          buildingMarkers[idx].marker.openPopup();
+          Array.from(sidebarList.children).forEach(el => el.classList.remove('active'));
+          li.classList.add('active');
+        });
+        sidebarList.appendChild(li);
+      });
+    }
+    // toggle sidebar
+    if (toggleBtn && sidebar) {
+      toggleBtn.addEventListener('click', function() {
+        sidebar.classList.toggle('hide');
+        if (sidebar.classList.contains('hide')) {
+          toggleBtn.textContent = 'แสดงรายชื่อสถานที่';
+        } else {
+          toggleBtn.textContent = 'ปิดรายชื่อสถานที่';
+        }
+      });
+      // เริ่มต้นซ่อน sidebar
+      sidebar.classList.add('hide');
+    }
+  });
+
 // ฟังก์ชันค้นหา detail
 function searchDetail() {
   var input = document.getElementById('search-input');
