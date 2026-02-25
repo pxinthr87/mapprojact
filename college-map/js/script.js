@@ -213,6 +213,7 @@ buildings.forEach(b => {
     var sidebarList = document.getElementById('sidebar-list');
     var sidebar = document.getElementById('sidebar');
     var toggleBtn = document.getElementById('sidebar-toggle');
+      var closeBtn = document.getElementById('sidebar-close');
     if (sidebarList) {
       buildings.forEach(function(b, idx) {
         var li = document.createElement('li');
@@ -241,6 +242,13 @@ buildings.forEach(b => {
       // เริ่มต้นซ่อน sidebar
       sidebar.classList.add('hide');
     }
+      // ปุ่มกากบาทปิด sidebar
+      if (closeBtn && sidebar) {
+        closeBtn.addEventListener('click', function() {
+          sidebar.classList.add('hide');
+          if (toggleBtn) toggleBtn.textContent = 'แสดงรายชื่อสถานที่';
+        });
+      }
   });
 
 // ฟังก์ชันค้นหา detail

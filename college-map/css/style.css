@@ -46,6 +46,24 @@ body {
   padding: 12px 8px 12px 8px;
   overflow-y: auto;
   transition: left 0.3s, opacity 0.3s;
+   box-sizing: border-box;
+}
+#sidebar-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  z-index: 1004;
+  transition: background 0.2s;
+}
+#sidebar-close:hover {
+  background: #e6f0ff;
 }
 #sidebar.hide {
   left: -260px;
