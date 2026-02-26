@@ -120,7 +120,7 @@ var buildings = [
     detail: "แผนกวิชาช่างอากาศยาน"
   },
   {
-    name: "แผนกเทคโนโลยีสารสนเทศ/แผนกช่างเทคนิคอุตสาหกรรม",
+    name: "อาคาร7",
     lat: 13.537387,
     lng: 100.617725,
     images: ["images/building21.png","images/building22.png",],
