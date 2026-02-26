@@ -17,13 +17,6 @@
 <div id="sidebar">
   <button id="sidebar-close" title="ปิด" style="position:absolute;top:8px;right:8px;width:32px;height:32px;border:none;background:transparent;font-size:24px;cursor:pointer;z-index:1004;">&times;</button>
   <h3 style="margin:16px 0 8px 0;text-align:center;">รายชื่อสถานที่</h3>
-  <div id="search-container">
-    <div style="position:relative;width:100%;">
-      <input type="text" id="search-input" placeholder="ค้นหาสถานที่" autocomplete="off">
-      <ul id="search-suggestions" style="display:none;position:absolute;top:38px;right:0;left:0;z-index:1003;background:#fff;border:1px solid #ccc;border-radius:0 0 5px 5px;max-height:220px;overflow-y:auto;padding:0;margin:0;list-style:none;font-size:16px;"></ul>
-    </div>
-    <button id="search-btn">ค้นหา</button>
-  </div>
   <ul id="sidebar-list" style="padding:0;margin:0;list-style:none;"></ul>
 </div>
 
@@ -31,10 +24,19 @@
   <img id="banner-image" src="images/banner.png" alt="แบนเนอร์">
 </div>
 
-<!-- ปุ่มเปิด/ปิด Sidebar -->
-<div id="sidebar-toggle-container" style="width:100%;text-align:left;margin:0 0 8px 0;">
-  <button id="sidebar-toggle" style="padding:6px 18px;font-size:16px;border-radius:6px;border:1px solid #007bff;background:#007bff;color:#fff;cursor:pointer;">แสดงรายชื่อสถานที่</button>
-</div>
+<!-- ปุ่มเปิด/ปิด Sidebar และช่องค้นหา -->
+<div id="top-bar-container">
+  <div id="sidebar-toggle-container">
+    <button id="sidebar-toggle" style="padding:6px 18px;font-size:16px;border-radius:6px;border:1px solid #007bff;background:#007bff;color:#fff;cursor:pointer;">แสดงรายชื่อสถานที่</button>
+  </div>
+  <div id="search-container">
+    <div style="position:relative;width:100%;">
+      <input type="text" id="search-input" placeholder="ค้นหาสถานที่" autocomplete="off">
+      <ul id="search-suggestions" style="display:none;position:absolute;top:38px;right:0;left:0;z-index:1003;background:#fff;border:1px solid #ccc;border-radius:0 0 5px 5px;max-height:220px;overflow-y:auto;padding:0;margin:0;list-style:none;font-size:16px;"></ul>
+    </div>
+    <button id="search-btn">ค้นหา</button>
+  </div>
+ </div>
 
 <div id="map"></div>
 
