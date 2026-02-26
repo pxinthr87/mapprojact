@@ -1,20 +1,18 @@
 /* ====== Search box overlay ====== */
 #search-container {
-  position: absolute;
-  top: 30px;
-  right: 5vw;
-  z-index: 1002;
+  width: 100%;
   display: flex;
+  flex-direction: row;
   gap: 8px;
+  margin-bottom: 12px;
   background: none;
   box-shadow: none;
-  flex-wrap: wrap;
-  width: min(90vw, 400px);
+  z-index: 1002;
 }
 #search-input {
   padding: 6px 12px;
-  width: 100%;
-  min-width: 120px;
+  flex: 1 1 0;
+  min-width: 80px;
   max-width: 300px;
   border-radius: 5px;
   border: 1px solid #ccc;
